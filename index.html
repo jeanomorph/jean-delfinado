@@ -315,12 +315,6 @@
     <li><a onclick="showPage('blog')" data-page="blog">Blog</a></li>
     <li><a onclick="showPage('services')" data-page="services">Services</a></li>
     <li><a onclick="showPage('contact')" data-page="contact" class="nav-cta">Contact</a></li>
-    <li>
-      <div class="toggle-group">
-        <span class="toggle-label" id="toggle-label">Dark</span>
-        <div class="theme-toggle" onclick="toggleTheme()" title="Toggle theme"></div>
-      </div>
-    </li>
   </ul>
   <div class="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
@@ -328,6 +322,11 @@
 </nav>
 
 <!-- HOME -->
+<div id="theme-toggle-bar" style="position:fixed; top:72px; right:0; z-index:999; display:flex; align-items:center; gap:7px; background:var(--nav-bg); backdrop-filter:blur(20px); padding:6px 16px; border-left:1px solid var(--border); border-bottom:1px solid var(--border); border-bottom-left-radius:8px;">
+  <span style="font-size:0.68rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.06em;" id="toggle-label">Dark</span>
+  <div class="theme-toggle" onclick="toggleTheme()" title="Toggle theme"></div>
+</div>
+  
 <div id="page-home" class="page active">
   <section class="hero">
     <div class="hero-bg"></div>
