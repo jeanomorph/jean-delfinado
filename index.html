@@ -296,7 +296,9 @@
     .stack-group { margin-bottom: 60px; }
     .stack-group-title { font-family: var(--font-display); font-size: 1.4rem; color: var(--text-heading); letter-spacing: 0.06em; margin-bottom: 5px; }
     .stack-group-desc { font-size: 0.84rem; color: var(--text-muted); font-weight: 300; margin-bottom: 24px; }
-    .stack-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .stack-grid, .stack-cards-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    @media (max-width: 900px) { .stack-grid, .stack-cards-grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (max-width: 600px) { .stack-grid, .stack-cards-grid { grid-template-columns: repeat(3, 1fr); } }
     .stack-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 18px 12px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; transition: all 0.25s; }
     .stack-card:hover { border-color: rgba(232,118,42,0.35); transform: translateY(-3px); box-shadow: 0 10px 28px var(--shadow); }
     .stack-card svg { width: 24px; height: 24px; }
