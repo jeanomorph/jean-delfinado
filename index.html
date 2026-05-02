@@ -337,7 +337,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 /* Container to ensure the button aligns with the social icons row width */
 .resume-container {
-    margin-top: 40px;
+    margin-top: 24px;
     width: 255px; /* Adjust this value if needed to match your social icons row exactly */
 }
 
@@ -373,6 +373,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 .btn-download:hover svg {
     transform: translateY(2px);
+}
+    /* LIGHT MODE OVERRIDE */
+/* This assumes your light mode class is named .light-mode */
+.light-mode .btn-download {
+    color: var(--text-dark); /* Or the specific variable you use for 'Get in Touch' text */
+    background: rgba(0, 0, 0, 0.05); /* Light glass effect */
+    border-color: var(--orange); /* Keeps the orange border for branding */
+}
+
+.light-mode .btn-download:hover {
+    background: var(--orange);
+    color: #fff; /* White text on orange background for contrast */
 }
   </style>
 
