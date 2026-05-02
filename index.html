@@ -1391,15 +1391,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
   // PAGE NAVIGATION
   function showPage(name) {
+    // 1. Update the URL hash (e.g., jeanomorph.github.io/jean-delfinado/#about)
+    window.location.hash = name;
+
+    // 2. Section Visibility Logic
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     const targetPage = document.getElementById('page-' + name);
     if (targetPage) {
       targetPage.classList.add('active');
     }
     
-    // Highlight active link in navigation
+    // 3. Highlight active link in navigation
     document.querySelectorAll('.nav-links a').forEach(a => {
-      // Handles both data-page attributes and onclick matches
       const isMatch = a.dataset.page === name || a.getAttribute('onclick')?.includes(name);
       a.classList.toggle('active', isMatch);
     });
@@ -1416,14 +1419,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     html.setAttribute('data-theme', newTheme);
     document.getElementById('toggle-label').textContent = newTheme.charAt(0).toUpperCase() + newTheme.slice(1);
 
-    // Swap photo logic restored
     const photo = document.querySelector('.theme-photo');
     if (photo) {
-      // If we are moving to light, use data-light. If moving to dark, use data-dark.
       photo.src = newTheme === 'light' ? photo.dataset.light : photo.dataset.dark;
     }
 
-    // Swap caption logic restored
     const caption = document.getElementById('photo-caption');
     if (caption) {
       caption.textContent = newTheme === 'dark'
@@ -1432,7 +1432,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
   }
 
-  // MOBILE MENU RESTORED
+  // MOBILE MENU
   function toggleMenu() {
     const links = document.querySelector('.nav-links');
     const isOpen = links.style.display === 'flex';
@@ -1455,10 +1455,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
   }
 
-  // INIT
+  // INITIALIZATION & DIRECT LINK HANDLING
   document.addEventListener('DOMContentLoaded', () => {
-    // Ensure we start on home
-    showPage('home');
+    // If someone visits a direct link like /#stack, load that page.
+    const currentHash = window.location.hash.replace('#', '');
+    
+    if (currentHash && document.getElementById('page-' + currentHash)) {
+      showPage(currentHash);
+    } else {
+      showPage('home');
+    }
+  });
+
+  // Handle browser Back/Forward button clicks
+  window.addEventListener('hashchange', () => {
+    const name = window.location.hash.replace('#', '') || 'home';
+    showPage(name);
   });
 </script>
 </body>
