@@ -1106,46 +1106,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
+      <!-- We open with a FORM tag instead of a DIV -->
       <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
-    <!-- This is your "stamp" that directs the email to you -->
-    <input type="hidden" name="access_key" value="cf69b3fd-82f2-4cd7-9d73-49e633a0852c">
-    
-    <h3>SEND A MESSAGE</h3>
-    
-    <div class="form-group">
-        <label>Your Name</label>
-        <input type="text" name="name" placeholder="Juan dela Cruz" required />
-    </div>
-    
-    <div class="form-group">
-        <label>Email Address</label>
-        <input type="email" name="email" placeholder="you@example.com" required />
-    </div>
-    
-    <div class="form-group">
-        <label>Subject</label>
-        <select name="subject">
-            <option value="">Select a topic</option>
-            <option>Job Opportunity</option>
-            <option>Freelance Project</option>
-            <option>Tracking / GTM Help</option>
-            <option>Campaign Reporting</option>
-            <option>General Inquiry</option>
-        </select>
-    </div>
-    
-    <div class="form-group">
-        <label>Message</label>
-        <textarea name="message" placeholder="Tell me what you have in mind..." required></textarea>
-    </div>
-
-    <!-- Changed to type="submit" and removed onclick -->
-    <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;display:flex">Send Message</button>
-    
-    <p style="font-size:0.76rem;color:var(--text-muted);text-align:center;margin-top:10px;font-weight:300">
-        Message will be sent directly to my inbox.
-    </p>
-</form>
+          <input type="hidden" name="access_key" value="cf69b3fd-82f2-4cd7-9d73-49e633a0852c">
+          
+          <h3>SEND A MESSAGE</h3>
+          
+          <div class="form-group">
+              <label>Your Name</label>
+              <input type="text" name="name" placeholder="Juan dela Cruz" required />
+          </div>
+          
+          <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" name="email" placeholder="you@example.com" required />
+          </div>
+          
+          <div class="form-group">
+              <label>Subject</label>
+              <select name="subject">
+                  <option value="">Select a topic</option>
+                  <option>Job Opportunity</option>
+                  <option>Freelance Project</option>
+                  <option>Tracking / GTM Help</option>
+                  <option>Campaign Reporting</option>
+                  <option>General Inquiry</option>
+              </select>
+          </div>
+          
+          <div class="form-group">
+              <label>Message</label>
+              <textarea name="message" placeholder="Tell me what you have in mind..." required></textarea>
+          </div>
+      
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;display:flex">Send Message</button>
+          
+          <p style="font-size:0.76rem;color:var(--text-muted);text-align:center;margin-top:10px;font-weight:300">
+              Message will be sent directly to my inbox.
+          </p>
+      </form> <!-- This MUST be a </form> tag to match the top -->
 
   <footer>
     <div class="container">
