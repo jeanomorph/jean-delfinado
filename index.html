@@ -335,10 +335,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
    /* --- Download Button Styles --- */
 
-/* Container to ensure the button aligns with the social icons row width */
 .resume-container {
     margin-top: 24px;
-    width: 255px; /* Adjust this to match your social icons row exactly */
+    width: 255px; 
 }
 
 .btn-download {
@@ -351,33 +350,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.1rem;
     letter-spacing: 1px;
-    color: #ffffff; /* Default white text for dark mode */
-    background: rgba(255, 255, 255, 0.03); 
-    border: 1px solid var(--orange);
+    color: #ffffff; /* Default white for dark mode */
+    background: transparent;
+    border: 1.5px solid var(--orange);
     border-radius: 4px;
     text-decoration: none;
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
-/* LIGHT MODE IDLE STATE */
-/* This makes the font black only when light mode is active and not hovered */
-.light-mode .btn-download {
-    color: #000000; 
-    background: rgba(0, 0, 0, 0.05);
+/* LIGHT MODE FIX: Targets .light-mode, .light-theme, and data-theme='light' */
+.light-mode .btn-download,
+.light-theme .btn-download,
+[data-theme="light"] .btn-download {
+    color: #000000 !important; /* Forces black text in light mode */
 }
 
-/* UNIVERSAL HOVER STATE */
-/* This ensures the button is always orange with white text on hover in both modes */
+/* UNIVERSAL HOVER: Stays orange/white in both modes */
 .btn-download:hover, 
-.light-mode .btn-download:hover {
+.light-mode .btn-download:hover,
+.light-theme .btn-download:hover,
+[data-theme="light"] .btn-download:hover {
     background: var(--orange) !important;
     color: #ffffff !important; 
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(232, 118, 42, 0.3);
 }
 
-/* Icon Animation */
 .btn-download svg {
     transition: transform 0.3s ease;
 }
