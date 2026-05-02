@@ -1379,7 +1379,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </footer>
 </div>
   
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script>
+  // PAGE NAVIGATION
   function showPage(name) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     const targetPage = document.getElementById('page-' + name);
@@ -1387,22 +1389,67 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       targetPage.classList.add('active');
     }
     
-    // Highlight active link
+    // Highlight active link in navigation
     document.querySelectorAll('.nav-links a').forEach(a => {
-      a.classList.toggle('active', a.getAttribute('onclick')?.includes(name));
+      // Handles both data-page attributes and onclick matches
+      const isMatch = a.dataset.page === name || a.getAttribute('onclick')?.includes(name);
+      a.classList.toggle('active', isMatch);
     });
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  // THEME TOGGLE
   function toggleTheme() {
     const html = document.documentElement;
     const isDark = html.getAttribute('data-theme') === 'dark';
-    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-    document.getElementById('toggle-label').textContent = isDark ? 'Light' : 'Dark';
+    const newTheme = isDark ? 'light' : 'dark';
+    
+    html.setAttribute('data-theme', newTheme);
+    document.getElementById('toggle-label').textContent = newTheme.charAt(0).toUpperCase() + newTheme.slice(1);
+
+    // Swap photo logic restored
+    const photo = document.querySelector('.theme-photo');
+    if (photo) {
+      // If we are moving to light, use data-light. If moving to dark, use data-dark.
+      photo.src = newTheme === 'light' ? photo.dataset.light : photo.dataset.dark;
+    }
+
+    // Swap caption logic restored
+    const caption = document.getElementById('photo-caption');
+    if (caption) {
+      caption.textContent = newTheme === 'dark'
+        ? 'serious mode: dark theme activated'
+        : "can't see me in the dark anyway";
+    }
   }
 
+  // MOBILE MENU RESTORED
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    const isOpen = links.style.display === 'flex';
+    if (isOpen) {
+      links.style.display = 'none';
+    } else {
+      Object.assign(links.style, {
+        display: 'flex',
+        flexDirection: 'column',
+        position: 'absolute',
+        top: '72px',
+        left: '0',
+        right: '0',
+        background: 'var(--bg)',
+        zIndex: '999',
+        padding: '16px',
+        gap: '12px',
+        borderTop: '1px solid var(--border)'
+      });
+    }
+  }
+
+  // INIT
   document.addEventListener('DOMContentLoaded', () => {
+    // Ensure we start on home
     showPage('home');
   });
 </script>
