@@ -333,12 +333,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .footer-links { flex-wrap: wrap; justify-content: center; }
     }
 
-     /* --- Download Button Styles --- */
+   /* --- Download Button Styles --- */
 
 /* Container to ensure the button aligns with the social icons row width */
 .resume-container {
     margin-top: 24px;
-    width: 255px; /* Adjust this value if needed to match your social icons row exactly */
+    width: 255px; /* Adjust this to match your social icons row exactly */
 }
 
 .btn-download {
@@ -348,43 +348,42 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     gap: 10px;
     width: 100%;
     padding: 12px;
-    font-family: 'Bebas Neue', sans-serif; /* Matches your header style */
+    font-family: 'Bebas Neue', sans-serif;
     font-size: 1.1rem;
     letter-spacing: 1px;
-    color: #fff;
-    background: rgba(255, 255, 255, 0.03); /* Subtle glass effect */
-    border: 1px solid var(--orange); /* Uses your brand orange */
+    color: #ffffff; /* Default white text for dark mode */
+    background: rgba(255, 255, 255, 0.03); 
+    border: 1px solid var(--orange);
     border-radius: 4px;
     text-decoration: none;
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
-.btn-download:hover {
-    background: var(--orange);
-    color: #111; /* Darker text on hover for readability */
+/* LIGHT MODE IDLE STATE */
+/* This makes the font black only when light mode is active and not hovered */
+.light-mode .btn-download {
+    color: #000000; 
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* UNIVERSAL HOVER STATE */
+/* This ensures the button is always orange with white text on hover in both modes */
+.btn-download:hover, 
+.light-mode .btn-download:hover {
+    background: var(--orange) !important;
+    color: #ffffff !important; 
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(232, 118, 42, 0.3);
 }
 
+/* Icon Animation */
 .btn-download svg {
     transition: transform 0.3s ease;
 }
 
 .btn-download:hover svg {
     transform: translateY(2px);
-}
-    /* LIGHT MODE OVERRIDE */
-/* This assumes your light mode class is named .light-mode */
-.light-mode .btn-download {
-    color: var(--text-dark); /* Or the specific variable you use for 'Get in Touch' text */
-    background: rgba(0, 0, 0, 0.05); /* Light glass effect */
-    border-color: var(--orange); /* Keeps the orange border for branding */
-}
-
-.light-mode .btn-download:hover {
-    background: var(--orange);
-    color: #fff; /* White text on orange background for contrast */
 }
   </style>
 
