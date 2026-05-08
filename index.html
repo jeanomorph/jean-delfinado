@@ -1107,7 +1107,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
 <!-- We open with a FORM tag instead of a DIV -->
-      <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+      <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" id="contact-form">
           <input type="hidden" name="access_key" value="cf69b3fd-82f2-4cd7-9d73-49e633a0852c">
           
           <h3>SEND A MESSAGE</h3>
@@ -1145,6 +1145,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               Message will be sent directly to my inbox.
           </p>
       </form>
+      <script>
+const form = document.getElementById('contact-form');
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Change button text to show it's sending
+    const btn = form.querySelector('button');
+    const originalBtnText = btn.innerHTML;
+    btn.innerHTML = "Sending...";
+    btn.disabled = true;
+
+    const formData = new FormData(form);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+        .then(async (response) => {
+            if (response.status == 200) {
+                // DATA LAYER PUSH FOR GTM
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': 'contact_form_success',
+                    'form_name': 'Portfolio Contact'
+                });
+                
+                alert("Message sent successfully!");
+                form.reset(); // Clears the form
+            } else {
+                alert("Something went wrong. Please try again.");
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            alert("Submission failed.");
+        })
+        .finally(() => {
+            btn.innerHTML = originalBtnText;
+            btn.disabled = false;
+        });
+});
+</script>
     </div> <!-- Closes the contact-grid -->
   </div> <!-- Closes the container -->
 
